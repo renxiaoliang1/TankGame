@@ -20,11 +20,11 @@ def start():
     #设置图标
     pygame.display.set_icon(iconImage)
     #创建坦克对象
-    tank = HeroTank(100,100,window)
-    grass = GrassWall(160,160,window)
-    water = WaterWall(220,220,window)
-    steel = SteelWall(280,280,window)
-    brick = BrickWall(340,340,window)
+    tank = HeroTank(x=100,y=100,window=window)
+    grass = GrassWall(x=160,y=160,window=window)
+    water = WaterWall(x=220,y=220,window=window)
+    steel = SteelWall(x=280,y=280,window=window)
+    brick = BrickWall(x=340,y=340,window=window)
 
     #死循环控制程序不退出
     while True:
