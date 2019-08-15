@@ -8,6 +8,9 @@ from views.SteelWall import SteelWall
 from views.BrickWall import BrickWall
 from views.WaterWall import WaterWall
 
+#保存界面上所有需要现实的控件
+views = []
+
 def start():
     #初始化游戏
     pygame.init()
@@ -19,21 +22,28 @@ def start():
     iconImage = pygame.image.load('./img/star.gif')
     #设置图标
     pygame.display.set_icon(iconImage)
-    #创建坦克对象
-    tank = HeroTank(x=100,y=100,window=window)
-    grass = GrassWall(x=160,y=160,window=window)
-    water = WaterWall(x=220,y=220,window=window)
-    steel = SteelWall(x=280,y=280,window=window)
-    brick = BrickWall(x=340,y=340,window=window)
+
+    #解析地图
+    file = open('./map/1.map',encoding='utf-8')
+    #全部读取
+    lines = file.readlines()
+    #遍历每一行
+    for row in range(0,len(lines)):
+        line = lines[row]
+        #获取每一行字符
+        for col in range(0,len(line)):
+            str = line[col]
+            if str == '主':
+                #创建我方坦克
+                tank = HeroTank(x=col*BLOCK_SIZE,y=row*BLOCK_SIZE,window=window)
+                views.append(tank)
+
 
     #死循环控制程序不退出
     while True:
-        #显示坦克
-        tank.display()
-        grass.display()
-        steel.display()
-        water.display()
-        brick.display()
+        #显示
+        for view in views:
+            view.display()
         #刷新
         pygame.display.flip()
 
