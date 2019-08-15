@@ -8,7 +8,12 @@ def start():
     pygame.init()
     #显示窗口
     window = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
-
+    #修改游戏标题和图片
+    pygame.display.set_caption("坦克大战")
+    #修改游戏图标
+    iconImage = pygame.image.load('./img/star.gif')
+    #设置图标
+    pygame.display.set_icon(iconImage)
 
     #死循环控制程序不退出
     while True:
