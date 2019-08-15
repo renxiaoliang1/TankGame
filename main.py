@@ -28,6 +28,8 @@ def start():
 
     #死循环控制程序不退出
     while True:
+        #清除窗口画面
+        window.fill((0,0,0))
         #显示
         for view in views:
             view.display()
