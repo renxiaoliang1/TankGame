@@ -3,6 +3,10 @@ from pygame.locals import *
 from util.local import *
 import sys
 from views.HeroTank import HeroTank
+from views.GrassWall import GrassWall
+from views.SteelWall import SteelWall
+from views.BrickWall import BrickWall
+from views.WaterWall import WaterWall
 
 def start():
     #初始化游戏
@@ -17,11 +21,19 @@ def start():
     pygame.display.set_icon(iconImage)
     #创建坦克对象
     tank = HeroTank(100,100,window)
+    grass = GrassWall(160,160,window)
+    water = WaterWall(220,220,window)
+    steel = SteelWall(280,280,window)
+    brick = BrickWall(340,340,window)
 
     #死循环控制程序不退出
     while True:
         #显示坦克
         tank.display()
+        grass.display()
+        steel.display()
+        water.display()
+        brick.display()
         #刷新
         pygame.display.flip()
 
