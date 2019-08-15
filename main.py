@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from util.local import *
 import sys
+from views.HeroTank import HeroTank
 
 def start():
     #初始化游戏
@@ -14,9 +15,17 @@ def start():
     iconImage = pygame.image.load('./img/star.gif')
     #设置图标
     pygame.display.set_icon(iconImage)
+    #创建坦克对象
+    tank = HeroTank(100,100,window)
 
     #死循环控制程序不退出
     while True:
+        #显示坦克
+        tank.display()
+        #刷新
+        pygame.display.flip()
+
+
         #处理事件
         eventList = pygame.event.get()
         #遍历事件
