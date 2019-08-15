@@ -33,8 +33,11 @@ class HeroTank(View):
         :param direction:Direction枚举类型
         :return:
         """
-        #改变方向
-        self.direction = direction
+        #如果移动方向与原来方向不一致，需要先换方向
+        if self.direction!=direction:
+            #改变方向
+            self.direction = direction
+            return
         #移动
         if direction==Direction.UP:
             self.y -= self.speed
