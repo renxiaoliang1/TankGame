@@ -1,12 +1,8 @@
 import pygame
 from pygame.locals import *
-from util.local import *
+from util.utils import *
 import sys
-from views.HeroTank import HeroTank
-from views.GrassWall import GrassWall
-from views.SteelWall import SteelWall
-from views.BrickWall import BrickWall
-from views.WaterWall import WaterWall
+
 
 #保存界面上所有需要现实的控件
 views = []
@@ -23,21 +19,12 @@ def start():
     #设置图标
     pygame.display.set_icon(iconImage)
 
-    #解析地图
-    file = open('./map/1.map',encoding='utf-8')
-    #全部读取
-    lines = file.readlines()
-    #遍历每一行
-    for row in range(0,len(lines)):
-        line = lines[row]
-        #获取每一行字符
-        for col in range(0,len(line)):
-            str = line[col]
-            if str == '主':
-                #创建我方坦克
-                tank = HeroTank(x=col*BLOCK_SIZE,y=row*BLOCK_SIZE,window=window)
-                views.append(tank)
+    #加载地图
+    parseMap('./map/1.map',window,views)
 
+
+    #获取坦克
+    tank = list(filter(lambda view:isinstance(view,HeroTank),views))[0]
 
     #死循环控制程序不退出
     while True:
@@ -46,7 +33,6 @@ def start():
             view.display()
         #刷新
         pygame.display.flip()
-
 
         #处理事件
         eventList = pygame.event.get()
@@ -57,6 +43,20 @@ def start():
                 pygame.quit()
                 #退出程序
                 sys.exit()
+
+        #获取按压事件
+        status = pygame.key.get_pressed()
+        #判断是否有按键按压
+        if 1 in status:
+            #有按键按压
+            if status[K_a]:
+                tank.move(Direction.LEFT)
+            elif status[K_d]:
+                tank.move(Direction.RIGHT)
+            elif status[K_w]:
+                tank.move(Direction.UP)
+            elif status[K_s]:
+                tank.move(Direction.DOWN)
 
 if __name__ == '__main__':
     start()
