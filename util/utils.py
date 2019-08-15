@@ -18,7 +18,7 @@ def parseMap(path,window,views):
             str = line[col]
             if str == '主':
                 # 创建我方坦克
-                views.append(HeroTank(x=col * BLOCK_SIZE, y=row * BLOCK_SIZE, window=window))
+                views.append(HeroTank(x=col * BLOCK_SIZE, y=row * BLOCK_SIZE, window=window,direction=Direction.UP))
             elif str == '草':
                 views.append(GrassWall(x=col * BLOCK_SIZE, y=row * BLOCK_SIZE, window=window))
             elif str == '水':
