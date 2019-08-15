@@ -1,0 +1,6 @@
+#每一块的大小
+BLOCK_SIZE = 60
+#游戏窗口宽度
+WINDOW_WIDTH = 13*BLOCK_SIZE
+#游戏窗口高度
+WINDOW_HEIGHT = 13*BLOCK_SIZE
